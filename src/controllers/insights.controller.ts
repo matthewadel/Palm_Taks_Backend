@@ -14,4 +14,14 @@ export class InsightsController {
             data,
         })
     })
+
+    handleInsights = asyncWrapper(async (req: Request, res: Response) => {
+
+        const data = await this.insightsService.handleInsights(req.body);
+
+        res.status(200).send({
+            success: true,
+            data,
+        })
+    })
 }
