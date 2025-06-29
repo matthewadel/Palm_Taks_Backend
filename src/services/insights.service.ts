@@ -49,7 +49,7 @@ export class InsightsService {
             const prompt = this._createHealthInsightPrompt(body.sleep, moodDescription, body.notes);
 
             // Get AI-generated insights
-            const aiInsight = await this.getAIInsight(prompt);
+            const aiInsight = await this._getAIInsight(prompt);
 
             return {
                 message: aiInsight,
@@ -87,7 +87,7 @@ Focus on practical advice for improving sleep, mood, or overall wellness.`;
         return prompt;
     }
 
-    private async getAIInsight(prompt: string): Promise<string> {
+    private async _getAIInsight(prompt: string): Promise<string> {
         const completion = await this.openai.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages: [

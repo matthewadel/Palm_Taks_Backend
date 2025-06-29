@@ -7,7 +7,6 @@ A robust and scalable TypeScript Node.js REST API for tracking mood insights, sl
 - **Mood Tracking**: Track daily moods with predefined mood options (Happy, Neutral, Sad)
 - **Sleep Monitoring**: Log sleep hours with validation
 - **Personal Notes**: Add optional notes with character limits
-- **AI-Powered Insights**: Personalized health recommendations using OpenAI GPT-3.5
 - **Request Validation**: Comprehensive input validation using Zod schemas
 - **Rate Limiting**: Protection against abuse with configurable rate limits
 - **Security**: HPP protection, CORS enabled, request compression
@@ -19,9 +18,7 @@ A robust and scalable TypeScript Node.js REST API for tracking mood insights, sl
 - **Runtime**: Node.js
 - **Language**: TypeScript
 - **Framework**: Express.js
-- **AI Integration**: OpenAI API (GPT-3.5-turbo)
 - **Validation**: Zod
-- **Environment**: dotenv
 - **Development**: Nodemon, ts-node
 - **Code Quality**: ESLint, Prettier
 - **Security**: hpp, cors, express-rate-limit, compression
@@ -62,7 +59,7 @@ Get available mood options
 - **Response**: Array of mood objects with id, value, label, and emoji
 
 #### POST `/insights`
-Submit mood insights data and receive AI-powered personalized recommendations
+Submit mood insights data
 - **Body**:
   ```json
   {
@@ -71,26 +68,13 @@ Submit mood insights data and receive AI-powered personalized recommendations
     "notes": "Good day"  // Optional: Notes (3-32 chars)
   }
   ```
-- **Response**: AI-generated personalized health insights based on your inputs
+- **Response**: Success message with personalized recommendations
 
 ## 🔧 Installation & Setup
 
 ### Prerequisites
 - Node.js (v16 or higher)
 - pnpm (recommended) or npm
-- OpenAI API Key (get from https://platform.openai.com/api-keys)
-
-### Environment Setup
-
-1. **Copy environment file**:
-   ```bash
-   cp .env.example .env
-   ```
-
-2. **Add your OpenAI API key** to `.env`:
-   ```bash
-   OPENAI_API_KEY=your_actual_openai_api_key_here
-   ```
 
 ### Install Dependencies
 
@@ -100,12 +84,6 @@ npm install -g pnpm
 
 # Install project dependencies
 pnpm install
-```
-
-### Development Dependencies Setup
-The project includes the following development tools:
-```bash
-pnpm add eslint prettier eslint-plugin-prettier eslint-config-prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin -D
 ```
 
 ## 🏃‍♂️ Running the Application
@@ -124,14 +102,6 @@ pnpm build
 # Start the built application
 pnpm start
 ```
-
-### Available Scripts
-
-- `pnpm dev` - Start development server with hot reload
-- `pnpm build` - Compile TypeScript to JavaScript
-- `pnpm start` - Run the compiled application
-- `pnpm lint` - Run ESLint on TypeScript files
-- `pnpm format` - Format code using Prettier
 
 ## 🛡️ Security Features
 
@@ -176,46 +146,10 @@ Insights submission response:
 {
   "success": true,
   "data": {
-    "message": "Based on your 8 hours of sleep and happy mood, you're doing great! Your sleep duration is excellent for recovery and cognitive function. To maintain this positive energy, consider a 15-minute walk in nature or some light stretching. Keep up the good work with your sleep routine!",
-    "userInputs": {
-      "sleep": 8,
-      "mood": "happy",
-      "notes": "Feeling great today!"
-    }
+    "message": "Success! Try meditating for 10 minutes today"
   }
 }
 ```
-
-Error response (when AI is unavailable):
-```json
-{
-  "success": true,
-  "data": {
-    "message": "Thanks for sharing your health data! Try to maintain a consistent sleep schedule and practice mindfulness for better wellbeing.",
-    "userInputs": {
-      "sleep": 8,
-      "mood": "happy",
-      "notes": "Feeling great today!"
-    },
-    "error": "AI service temporarily unavailable"
-  }
-}
-```
-
-## 🧠 AI-Powered Insights
-
-The application integrates with OpenAI's GPT-3.5-turbo model to provide personalized health recommendations based on:
-
-- **Sleep Duration**: Analyzes sleep patterns and provides sleep optimization tips
-- **Mood State**: Considers emotional well-being in recommendations
-- **Personal Notes**: Incorporates user's additional context for more targeted advice
-
-### AI Features:
-- Personalized health recommendations
-- Sleep optimization suggestions
-- Mood-based wellness tips
-- Contextual advice based on user notes
-- Fallback responses when AI service is unavailable
 
 ## 🏗️ Architecture
 
@@ -224,6 +158,7 @@ This project follows a clean, modular architecture:
 - **Controllers**: Handle HTTP requests and responses
 - **Services**: Contain business logic and data processing
 - **Middlewares**: Handle cross-cutting concerns (validation, error handling)
+- **Routing**: Handle app routes
 - **Schemas**: Define and validate data structures
 - **Utils**: Shared utilities and custom error classes
 
