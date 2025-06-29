@@ -2,7 +2,7 @@ import 'dotenv/config';
 import express from "express";
 import cors from "cors";
 import compression from "compression";
-import hpp from "hpp";
+import hpp from "hpp"; 
 import rateLimit from "express-rate-limit";
 import rootRouter from "./routes";
 import { NotFoundError } from "./utils";
@@ -11,7 +11,7 @@ import { globalErrorHandler } from "./middlewares";
 const app = express();
 
 app.use(express.json());
-app.use(hpp());
+app.use(hpp()); // http parameter pollution when attackers send multiple parameters with the same name
 app.use(cors());
 app.use(compression());
 

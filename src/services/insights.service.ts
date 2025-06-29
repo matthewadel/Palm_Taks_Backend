@@ -67,22 +67,22 @@ export class InsightsService {
     private _createHealthInsightPrompt(sleepHours: number, mood: string, notes?: string): string {
         let prompt = `As a health and wellness expert, provide a personalized insight and recommendation based on the following user data:
 
-Sleep: ${sleepHours} hours
-Current mood: ${mood}`;
-
-        if (notes) {
-            prompt += `
-Additional notes: ${notes}`;
-        }
-
-        prompt += `
-
-Please provide:
-1. A brief analysis of their current health indicators
-2. One specific, actionable recommendation
-3. Keep the response encouraging and under 100 words
-
-Focus on practical advice for improving sleep, mood, or overall wellness.`;
+                        Sleep: ${sleepHours} hours
+                        Current mood: ${mood}`;
+                            
+                                if (notes) {
+                                    prompt += `
+                        Additional notes: ${notes}`;
+                                }
+                            
+                                prompt += `
+                            
+                        Please provide:
+                        1. A brief analysis of their current health indicators
+                        2. One specific, actionable recommendation
+                        3. Keep the response encouraging and under 100 words
+                            
+                        Focus on practical advice for improving sleep, mood, or overall wellness.`;
 
         return prompt;
     }
